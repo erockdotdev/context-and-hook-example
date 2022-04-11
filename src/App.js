@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import Overlay from './components/Overlay';
+import { useOverlayWithContext } from './hooks/useOverlayWithContext';
+import Footer from './components/Footer';
 
 function App() {
+  const { isOpen, toggleIsOpen } = useOverlayWithContext();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      {isOpen && <Overlay />}
+      <main>
+        <h1
+          style={{
+            paddingBottom: '100px',
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Context and Hook Example
+        </h1>
+        <hr />
+        <button onClick={toggleIsOpen}>Toggle Overlay</button>
+      </main>
+
+      <Footer />
     </div>
   );
 }
